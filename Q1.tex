@@ -6,7 +6,7 @@
 
 \پاسخ{}
 
-
+الف)
 
 \begin{tikzpicture}
     \node[state,initial] (q1) {$q_1$};
@@ -31,9 +31,15 @@
     \draw (q4) edge[above] node[right]{$\_$} (q6);
     %shoroo e bakhsh e 2
     \draw (q6) edge[above] node[below]{$0-9,a-z$} (q7);
-    \draw (q7) edge[loop below] node[below]{$0-9,a-z$} q(7);
+    \draw (q7) edge[loop below] node[below]{$0-9,a-z$} (q7);
     %bakhsh e 2 alan too q7 ok shode
     \draw (q7) edge[above] node[below]{$\_$} (q8);
     \draw (q8) edge[above] node[below]{$a-z$} (q9);
     \draw (q9) edge[loop below] node[below]{$a-z$} (q9);
 \end{tikzpicture}
+
+ب)
+
+\begin{latin}
+$((+|-)|\epsilon)((1-9)(0-9)^*|b1(0|1)^*)$
+\end{latin}
