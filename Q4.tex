@@ -14,7 +14,7 @@
     \node[state,below=8.5cm of q0,accepting] (q5) {$q_5$};
     \node[state,right of=q5] (q6) {$q_6$};
     \node[state,right of=q6] (q7) {$q_7$};
-    \node[state,right of=q7] (q8) {$q_8$};
+    \node[state,right of=q7,accepting] (q8) {$q_8$};
     
     \draw (q0) edge[above] node{0-9} (q1);
     \draw (q1) edge[loop above] node{0-9} (q1);
