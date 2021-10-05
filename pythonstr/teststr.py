@@ -1,3 +1,3 @@
-a = """slm chetori? \""" khoobam"""
+a = """slm chetori? \\\ khoobam"""
 
 print(a)

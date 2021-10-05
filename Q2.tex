@@ -2,4 +2,128 @@
 %شماره دانشجویی: 
 \مسئله{نام سؤال}
 
+
 \پاسخ{}
+
+\lr{Lexical Analyzer DFA} به صورت زیر است:
+
+۱. اگر تنها \lr{token} های \lr{string} را بخواهیم بپذیریم:
+
+\begin{tikzpicture}
+
+    \node[state,initial] (q0) {$q_0$};
+    \node[state,right of=q0] (q1) {$q_1$};
+    \node[state,below of=q1] (q2) {$q_2$};
+    \node[state,right of=q1,accepting] (q3) {$q_3$};
+
+    \draw (q0) edge[above] node{"""} (q1);
+    \draw (q1) edge[bend right] node[left]{'\textbackslash'} (q2);
+    \draw (q2) edge[bend right] node[right]{'n','t','"','\ '} (q1);
+    \draw (q1) edge[above] node{"""} (q3);
+
+\end{tikzpicture}
+
+۲. اگر قرار باشد که همزمان \lr{token} های \lr{T\_id,T\_str,T\_=} را هم بپذیریم:
+
+در گراف زیر وضعیت \lr{$q_5$} حاکی از \lr{T\_=} و وضعیت \lr{$q_3$} حاکی از \lr{T\_constStr} و \lr{$q_4$} حاکی از \lr{T\_id} میباشند.
+
+\begin{latin}
+\begin{tikzpicture}
+
+    \node[state,initial] (q0) {$q_0$};
+    \node[state,right of=q0] (q1) {$q_1$};
+    \node[state,below of=q1] (q2) {$q_2$};
+    \node[state,right of=q1,accepting] (q3) {$q_3$};
+    \node[state,below=4cm of q0,accepting] (q4) {$q_4$};
+    \node[state,above=2cm,accepting] (q5) {$q_5$};
+
+    \draw (q0) edge[above] node{"""} (q1);
+    \draw (q1) edge[bend right] node[left]{'\textbackslash'} (q2);
+    \draw (q2) edge[bend right] node[right]{'n','t','"','\ '} (q1);
+    \draw (q1) edge[above] node{"""} (q3);
+    \draw (q0) edge[above] node[below right]{a-z,A-Z} (q4);
+    \draw (q4) edge[loop right] node{a-z,A-Z,1-9} (q4);
+    \draw (q0) edge[right] node{=} (q5);
+
+\end{tikzpicture}
+\end{latin}
+
+کد Scanner به صورت زیر است:
+
+\begin{latin}
+    \begin{lstlisting}
+#include <iostream>
+#include <fstream>
+#include <cctype>
+
+using namespace std;
+
+bool is_three_cot(istream &i) {
+    auto p = i.tellg();
+    bool result = true;
+    char c;
+    for (int j = 0; j < 3; j++) {
+        i.get(c);
+        if (c != '"')
+            result = false;
+    }
+    i.seekg(p);
+    return result;
+}
+
+
+bool is_id_valid(istream &i) {
+    i >> ws;
+    char c = i.get();
+    if (isdigit(c))
+        return false;
+    while (i.get(c))
+        if (isspace(c))
+            return true;
+        else if (isalnum(c))
+            continue;
+        else return false;
+    return false;
+}
+
+bool is_assigning(istream& i){
+    i >> ws;
+    return i.get() == '=' ? true : false;
+
+}
+bool is_py_str_valid(istream &i) {
+    char c;
+    i >> ws;
+    if (!is_three_cot(i))
+        return false;
+    i.ignore(3);
+    while ((c = i.peek()) != -1) {
+        if (is_three_cot(i))
+            return true;
+
+        if (c != '\\') {
+            i.ignore(1);
+            continue;
+        }
+        i.ignore(1);
+        if (is_three_cot(i))
+            i.ignore(3);
+        else {
+            i.ignore(1);
+            continue;
+        }
+    }
+    return false;
+}
+int main() {
+    ifstream i("teststr.py");
+    if (is_id_valid(i))
+        cout << "T_id" << endl;
+    if (is_assigning(i))
+        cout << "T_=" << endl;
+    if (is_py_str_valid(i))
+        cout << "T_constStr" << endl;
+    return 0;
+}
+    \end{lstlisting}
+\end{latin}

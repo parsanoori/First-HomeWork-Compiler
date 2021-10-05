@@ -34,14 +34,13 @@ bool is_id_valid(istream &i) {
     return false;
 }
 
-bool is_py_str_valid(istream &i) {
-    if (!is_id_valid(i))
-        return false;
-    char c;
+bool is_assigning(istream& i){
     i >> ws;
-    i.get(c);
-    if (c != '=')
-        return false;
+    return i.get() == '=' ? true : false;
+
+}
+bool is_py_str_valid(istream &i) {
+    char c;
     i >> ws;
     if (!is_three_cot(i))
         return false;
@@ -64,10 +63,14 @@ bool is_py_str_valid(istream &i) {
     }
     return false;
 }
-
 int main() {
     ifstream i("teststr.py");
-    cout << (is_py_str_valid(i) ? "true" : "false") << endl;
+    if (is_id_valid(i))
+        cout << "T_id" << endl;
+    if (is_assigning(i))
+        cout << "T_=" << endl;
+    if (is_py_str_valid(i))
+        cout << "T_constStr" << endl;
     return 0;
 }
 #pragma clang diagnostic pop
