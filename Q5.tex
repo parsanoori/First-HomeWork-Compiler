@@ -3,3 +3,47 @@
 \مسئله{نام سؤال}
 
 \پاسخ{}
+
+گراف به صورت زیر است:
+در اینجا d بیانگر رقم است.
+\begin{latin}
+    \begin{tikzpicture}
+        \node[state,initial] (q0) {$q_0$};
+        \node[state,right of=q0] (q1) {$q_1$};
+        \node[state,right of=q1,accepting] (q2) {$q_2$};
+        \node[state,below of=q0] (q3) {$q_3$};
+        \node[state,right of=q3,accepting] (q4) {$q_4$};
+        
+        \draw (q0) edge[above] node{d} (q1);
+        \draw (q1) edge[loop above] node{d} (q1);
+        \draw (q1) edge[above] node{.} (q2);
+        \draw (q2) edge[loop above] node{d} (q2);
+        \draw (q0) edge[right] node{.} (q3);
+        \draw (q3) edge[above] node{d} (q4);
+        \draw (q4) edge[loop below] node{d} (q4);
+    \end{tikzpicture}
+\end{latin}
+کد به صورت زیر است:
+\begin{latin}
+    \begin{lstlisting}
+#include <iostream>
+#include <cctype>
+using namespace std;
+
+bool is_correct_float(const string& s){
+    if (s == ".")
+        return false;
+    return all_of(s.begin(),s.end(),[] (const char c) -> bool {
+        return isdigit(c) || c == '.';
+    }) && any_of(s.begin(),s.end(),[] (const char c) -> bool {
+        return c == '.';
+    });
+}
+int main()
+{
+    string s = "2345678.";
+    cout << (is_correct_float(s) ? "true" : "false") << endl;
+    return 0;
+}
+    \end{lstlisting}
+\end{latin}
