@@ -3,3 +3,35 @@
 \مسئله{نام سؤال}
 
 \پاسخ{}
+
+\begin{latin}
+    \begin{tikzpicture}
+    
+    \node[state,initial] (q0) {$q_0$};
+    \node[state,right of=q0] (q1) {$q_1$};
+    \node[state,right of=q1] (q2) {$q_2$};
+    \node[state,right of=q2] (q3) {$q_3$};
+    \node[state,right of=q3] (q4) {$q_4$};
+    \node[state,below of=q4] (q5) {$q_5$};
+    \node[state,left of=q5] (q6) {$q_6$};
+    \node[state,left of=q6,accepting] (q7) {$q_7$};
+    \node[state,left of=q7] (q8) {$q_8$};
+    \node[state,left of=q8] (q9) {$q_9$};
+    \node[state,below of=q9] (q10) {$q_{10}$};
+    \node[state,right of=q10,accepting] (q11) {$q_{11}$};
+
+    \draw (q0) edge[above] node{if} (q1);
+    \draw (q1) edge[above] node{(} (q2);
+    \draw (q2) edge[above] node{BE} (q3);
+    \draw (q3) edge[above] node{)} (q4);
+    \draw (q4) edge[left] node{\{} (q5);
+    \draw (q5) edge[above] node{BLOCK;} (q6);
+    \draw (q6) edge[above] node{\}} (q7);
+    \draw (q7) edge[above] node{else} (q8);
+    \draw (q8) edge[above] node{\{} (q9);
+    \draw (q9) edge[right] node{BLOCK;} (q10);
+    \draw (q10) edge[above] node{\}} (q11);
+    \draw (q8) edge[right] node{if} (q1);
+
+     \end{tikzpicture}
+\end{latin}
