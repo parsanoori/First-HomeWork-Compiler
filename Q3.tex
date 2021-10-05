@@ -4,3 +4,26 @@
 
 
 \پاسخ{}
+
+الف) خیر کامپایلر از زبان سطح پایینتر به بالاتر نیز )همان دیکامپایل( و همچنین کامپایلر های زبان نرم افزار به سخت افزار هم داریم.
+
+ب) ؟ // TODO
+
+ج) 
+
+\begin{latin}
+\begin{tikzpicture}
+
+    \node[state,initial] (q0) {$q_0$};
+    \node[state,right of=q0] (q1) {$q_1$};
+    \node[state,below of=q1] (q2) {$q_2$};
+    \node[state,right of=q1,accepting] (q3) {$q_3$};
+
+    \draw (q0) edge[above] node{T\_"} (q1);
+    \draw (q1) edge[bend right] node[left]{'\textbackslash'} (q2);
+    \draw (q2) edge[bend right] node[right]{'n','t','"'} (q1);
+    \draw (q1) edge[loop above] node{$\Sigma$ - \{'\textbackslash','"'\}} (q1);
+    \draw (q1) edge[above] node{T\_"} (q3);
+
+\end{tikzpicture}
+\end{latin}

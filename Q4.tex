@@ -3,3 +3,30 @@
 \مسئله{نام سؤال}
 
 \پاسخ{}
+
+\begin{latin}
+\begin{tikzpicture}
+    \node[state, initial] (q0) {$q_0$};
+    \node[state,right of=q0,accepting] (q1) {$q_1$};
+    \node[state,right of=q0,below=2cm,accepting] (q2) {$q_2$};
+    \node[state,right of=q0,below=4cm,accepting] (q3) {$q_3$};
+    \node[state,right of=q0,below=6cm,accepting] (q4) {$q_4$};
+    \node[state,below=8.5cm of q0,accepting] (q5) {$q_5$};
+    \node[state,right of=q5] (q6) {$q_6$};
+    \node[state,right of=q6] (q7) {$q_7$};
+    \node[state,right of=q7] (q8) {$q_8$};
+    
+    \draw (q0) edge[above] node{0-9} (q1);
+    \draw (q1) edge[loop above] node{0-9} (q1);
+    \draw (q0) edge[above] node{+} (q2);
+    \draw (q0) edge[above] node{-} (q3);
+    \draw (q0) edge[above] node{*} (q4);
+    \draw (q0) edge[right] node{/} (q5);
+    \draw (q5) edge[above] node{*} (q6);
+    \draw (q6) edge[loop above] node{$\Sigma$ - \{'*'\}} (q6);
+    \draw (q6) edge[bend left] node[above]{*} (q7);
+    \draw (q7) edge[bend left] node[below]{$\Sigma$ - \{'/'\}} (q6);
+    \draw (q7) edge[above] node{/} (q8);
+
+\end{tikzpicture}
+\end{latin}

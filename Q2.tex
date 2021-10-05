@@ -19,6 +19,7 @@
     \draw (q0) edge[above] node{"""} (q1);
     \draw (q1) edge[bend right] node[left]{'\textbackslash'} (q2);
     \draw (q2) edge[bend right] node[right]{'n','t','"'} (q1);
+    \draw (q1) edge[loop above] node{$\Sigma$ - \{'\textbackslash','"'\}} (q1);
     \draw (q1) edge[above] node{"""} (q3);
 
 \end{tikzpicture}
@@ -40,6 +41,7 @@
     \draw (q0) edge[above] node{"""} (q1);
     \draw (q1) edge[bend right] node[left]{'\textbackslash'} (q2);
     \draw (q2) edge[bend right] node[right]{'n','t','"'} (q1);
+    \draw (q1) edge[loop above] node{$\Sigma$ - \{'\textbackslash','"'\}} (q1);
     \draw (q1) edge[above] node{"""} (q3);
     \draw (q0) edge[above] node[below right]{a-z,A-Z} (q4);
     \draw (q4) edge[loop right] node{a-z,A-Z,1-9} (q4);
