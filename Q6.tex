@@ -3,3 +3,92 @@
 \مسئله{نام سؤال}
 
 \پاسخ{}
+
+\begin{latin}
+    \begin{tikzpicture}
+        \node[state,initial,initial text=E] (q0) {$q_0$};
+        \node[state,accepting,right of=q0] (q1) {$q_1$};
+        \node[state,right of=q1] (q2) {$q_2$};
+
+        \draw (q0) edge[above] node{T} (q1);
+        \draw (q1) edge[above] node{or} (q2);
+        \draw (q2) edge[bend right=2cm] node[above]{T/@or} (q1);
+    \end{tikzpicture}
+\end{latin}
+
+\vspace{2cm}
+
+\begin{latin}
+    \begin{tikzpicture}
+        \node[state,initial,initial text=T] (q0) {$q_0$};
+        \node[state,accepting,right of=q0] (q1) {$q_1$};
+        \node[state,right of=q1] (q2) {$q_2$};
+
+        \draw (q0) edge[above] node{F} (q1);
+        \draw (q1) edge[above] node{and} (q2);
+        \draw (q2) edge[bend right=2cm] node[above]{F/@and} (q1);
+    \end{tikzpicture}
+\end{latin}
+
+\vspace{2cm}
+
+\begin{latin}
+    \begin{tikzpicture}
+        \node[state,initial,initial text=F] (q0) {$q_0$};
+        \node[state,right of=q0,accepting] (q1) {$q_1$};
+        \node[state,below of=q0] (q2) {$q_2$};
+        \node[state,below of=q1] (q3) {$q_3$};
+        \node[state,below of=q2] (q4) {$q_4$};
+        \node[state,below of=q3] (q5) {$q_5$};
+        \node[state,above of=q0,right=1cm] (q6) {$q_6$};
+        \node[state,left of=q2] (q7) {$q_7$};
+    
+        \draw (q0) edge[above] node{O} (q1);
+        \draw (q0) edge[left] node{$($} (q2); 
+        \draw (q2) edge[above] node{E} (q3);
+        \draw (q3) edge[right] node{$)$} (q1);
+        \draw (q0) edge[bend right] node[left]{not} (q7);
+        \draw (q7) edge[bend right] node[left]{$($} (q4); 
+        \draw (q4) edge[above] node{E} (q5);
+        \draw (q5) edge[bend right] node[right]{$)$/@not} (q1);
+        \draw (q0) edge[left] node{not} (q6);
+        \draw (q6) edge[right] node{O/@not} (q1);
+    \end{tikzpicture}
+
+    \begin{tikzpicture}[node distance=4cm]
+        \node[state,initial, initial text=O] (q0) {$q_0$};
+        \node[state,right=3cm of q0] (q1) {$q_1$};
+        \node[state,right=3cm of q1] (q2) {$q_2$};
+        \node[state,right=3cm of q2] (q3) {$q_3$};
+        
+        \draw (q0) edge[above] node{var/@push} (q1);
+        \draw (q1) edge[above] node{==} (q2);
+        \draw (q2) edge[above] node{var/@equity} (q3);
+
+        \node[state,below of=q2] (q4) {$q_4$};
+        \draw (q1) edge[left] node{!=} (q4);
+        \draw (q4) edge[right] node{var/@neq} (q3);
+        
+        \node[state,below of=q4] (q5) {$q_5$};
+        \draw (q1) edge[bend right] node[left]{>} (q5);
+        \draw (q5) edge[bend right] node{var/@gr} (q3);
+        
+        \node[state,below of=q5] (q6) {$q_6$};
+        \draw (q1) edge[bend right] node[left]{<} (q6);
+        \draw (q6) edge[bend right] node{var/@less} (q3);
+        
+        \node[state,below of=q6] (q7) {$q_7$};
+        \draw (q1) edge[bend right] node[left]{>=} (q7);
+        \draw (q7) edge[bend right] node{var/@gre} (q3);
+        
+        \node[state,below of=q7] (q8) {$q_8$};
+        \draw (q1) edge[bend right] node[left]{<=} (q8);
+        \draw (q8) edge[bend right] node{var/@lesse} (q3);
+
+        \draw (q0) edge[bend left] node[below]{true} (q3);
+        \draw (q0) edge[bend left=2cm] node[below]{false} (q3);
+        \draw (q0) edge[bend left=4cm] node[above]{predicate} (q3);
+
+    \end{tikzpicture}
+
+\end{latin}
