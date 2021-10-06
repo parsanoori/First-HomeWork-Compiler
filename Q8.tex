@@ -31,10 +31,13 @@
         \node[state,initial,initial text=T] (q0) {$q_0$};
         \node[state,accepting,right of=q0] (q1) {$q_1$};
         \node[state,right of=q1] (q2) {$q_2$};
+        \node[state, below of=q1] (q3) {$q_3$};
 
         \draw (q0) edge[above] node{F} (q1);
         \draw (q1) edge[above] node{*} (q2);
         \draw (q2) edge[bend right=2cm] node[above]{F/@mult} (q1);
+        \draw (q1) edge[right] node{/} (q3);
+        \draw (q3) edge[bend left] node[left]{F/@div} (q1);
     \end{tikzpicture}
 
     \begin{tikzpicture}
