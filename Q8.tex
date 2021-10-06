@@ -3,3 +3,26 @@
 \مسئله{نام سؤال}
 
 \پاسخ{}
+
+الف) دیگر بین ضرب و جمع الویتی قائل نیستیم و هر کدام که زودتر بیاید آن را انجام می‌دهیم.
+
+ب) 
+
+\begin{latin}
+    \begin{tikzpicture}[node distance=4.5cm]
+        \node[state, initial] (q0) {$q_0$};
+        \node[state, right of=q0] (q1) {$q_1$};
+        \node[state, below of=q0] (q2) {$q_2$};
+        \node[state, right of=q1] (q3) {$q_3$};
+        \node[state, below of=q3] (q4) {$q_4$};
+        
+        \draw (q0) edge[above] node{T} (q1);
+        \draw (q0) edge[left] node{-} (q2);
+        \draw (q2) edge[left] node{T/@sub} (q1);
+        \draw (q1) edge[above] node{+} (q3);
+        \draw (q1) edge[above] node{-} (q4);
+        \draw (q4) edge[bend left] node[left]{T/@sub} (q1);
+        \draw (q3) edge[bend right] node[above]{T/@add} (q1);
+        
+    \end{tikzpicture}
+\end{latin}
