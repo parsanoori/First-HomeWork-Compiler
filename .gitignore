@@ -3,3 +3,7 @@
 *.aux
 .DS_Store
 /commons/.DS_Store
+*.fls
+*.fdb_latexmk
+.vscode
+*.gz
