@@ -59,7 +59,7 @@
         \node[state,initial, initial text=O] (q0) {$q_0$};
         \node[state,right=3cm of q0] (q1) {$q_1$};
         \node[state,right=3cm of q1] (q2) {$q_2$};
-        \node[state,right=3cm of q2] (q3) {$q_3$};
+        \node[state,right=3cm of q2,accepting] (q3) {$q_3$};
         
         \draw (q0) edge[above] node{var/@push} (q1);
         \draw (q1) edge[above] node{==} (q2);
