@@ -25,4 +25,27 @@
         \draw (q3) edge[bend right] node[above]{T/@add} (q1);
         
     \end{tikzpicture}
+
+    \begin{tikzpicture}
+        \node[state,initial,initial text=T] (q0) {$q_0$};
+        \node[state,accepting,right of=q0] (q1) {$q_1$};
+        \node[state,right of=q1] (q2) {$q_2$};
+
+        \draw (q0) edge[above] node{F} (q1);
+        \draw (q1) edge[above] node{*} (q2);
+        \draw (q2) edge[bend right=2cm] node[above]{F/@mult} (q1);
+    \end{tikzpicture}
+
+    \begin{tikzpicture}
+        \node[state,initial,initial text=F] (q0) {$q_0$};
+        \node[state,right of=q0,accepting] (q1) {$q_1$};
+        \node[state,below of=q0] (q2) {$q_2$};
+        \node[state,below of=q1] (q3) {$q_3$};
+    
+        \draw (q0) edge[above] node{id/@push} (q1);
+        \draw (q0) edge[left] node{$($} (q2); 
+        \draw (q2) edge[above] node{E} (q3);
+        \draw (q3) edge[right] node{$)$} (q1);
+    \end{tikzpicture}
+
 \end{latin}
