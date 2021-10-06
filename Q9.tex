@@ -6,26 +6,26 @@
 
 \begin{latin}
 \begin{center}
-    $\color{red}id\color{black}*(id+id)$
-    \begin{tikzpicture}
-    
-        \node[state,initial,fill=red] (q0) {$q_0$};
-        \node[state,right of=q0,accepting] (q1) {$q_1$};
-    
-        \draw (q0) edge[above] node{T} (q1);
-        \draw (q1) edge[bend left] node[below]{+} (q0);
-    
-    \end{tikzpicture}
-    \begin{tabular}{ | l |  l | }
-        \hline
-        $q_1$ & T\_constInt \\ \hline
-        $q_2$ & + \\ \hline
-        $q_3$ & - \\ \hline
-        $q_4$ & * \\ \hline
-        $q_5$ & / \\ \hline
-        $q_8$ & T\_comment \\ 
-        \hline
-    
+    \begin{tabular}{c |c| c}
+        $\color{red}id\color{black}*(id+id)$ &
+        \begin{tikzpicture}
+        
+            \node[state,initial,fill=red] (q0) {$q_0$};
+            \node[state,right of=q0,accepting] (q1) {$q_1$};
+        
+            \draw (q0) edge[above] node{T} (q1);
+            \draw (q1) edge[bend left] node[below]{+} (q0);
+        
+        \end{tikzpicture} &
+        \begin{tabular}{ | c | }
+
+            \\ \hline
+            \\ \hline
+            \\ \hline
+            \\ \hline
+            \multicolumn{1}{c}{PS}
+
+        \end{tabular}
     \end{tabular}
 \end{center}
 \end{latin}
