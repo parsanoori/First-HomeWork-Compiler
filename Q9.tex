@@ -6,15 +6,16 @@
 
 \begin{latin}
 \begin{center}
-    \begin{tabular}{c |c| c}
+    \begin{tabular}{c c c}
         $\color{red}id\color{black}*(id+id)$ &
+        E:
         \begin{tikzpicture}
         
-            \node[state,initial,fill=red] (q0) {$q_0$};
-            \node[state,right of=q0,accepting] (q1) {$q_1$};
+            \node[state,initial,fill=red] (q1) {$1$};
+            \node[state,right of=q1,accepting] (q2) {$2$};
         
-            \draw (q0) edge[above] node{T} (q1);
-            \draw (q1) edge[bend left] node[below]{+} (q0);
+            \draw (q1) edge[above] node{T} (q2);
+            \draw (q2) edge[bend left] node[below]{+} (q1);
         
         \end{tikzpicture} &
         \begin{tabular}{ | c | }
@@ -23,6 +24,56 @@
             \\ \hline
             \\ \hline
             \\ \hline
+            \multicolumn{1}{c}{PS}
+
+        \end{tabular}
+
+        \\
+
+        $\color{red}id\color{black}*(id+id)$ &
+        T:
+        \begin{tikzpicture}
+        
+            \node[state,initial,fill=red] (q3) {$3$};
+            \node[state,right of=q3,accepting] (q4) {$4$};
+        
+            \draw (q3) edge[above] node{F} (q4);
+            \draw (q4) edge[bend left] node[below]{*} (q3);
+        
+        \end{tikzpicture} &
+        \begin{tabular}{ | c | }
+
+            \\ \hline
+            \\ \hline
+            \\ \hline
+            1 \\ \hline
+            \multicolumn{1}{c}{PS}
+
+        \end{tabular}
+
+        \\
+
+        $\color{red}id\color{black}*(id+id)$ &
+        F:
+        \begin{tikzpicture}
+        
+            \node[state,initial,fill=red] (q5) {$5$};
+            \node[state,right of=q5,accepting] (q6) {$6$};
+            \node[state,below of=q5] (q7) {$7$};
+            \node[state,right of=q7] (q8) {$8$};
+        
+            \draw (q5) edge[above] node{id} (q6);
+            \draw (q5) edge[right] node{(} (q7);
+            \draw (q7) edge[above] node{E} (q8);
+            \draw (q8) edge[left] node{)} (q6);
+        
+        \end{tikzpicture} &
+        \begin{tabular}{ | c | }
+
+            \\ \hline
+            \\ \hline
+            3 \\ \hline
+            1 \\ \hline
             \multicolumn{1}{c}{PS}
 
         \end{tabular}
