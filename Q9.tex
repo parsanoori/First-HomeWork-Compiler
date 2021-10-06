@@ -3,3 +3,15 @@
 \مسئله{نام سؤال}
 
 \پاسخ{}
+
+\begin{latin}
+    \begin{tikzpicture}
+    
+        \node[state,initial] (q0) {$q_0$};
+        \node[state,right of=q0,accepting] (q1) {$q_1$};
+    
+        \draw (q0) edge[above] node{T} (q1);
+        \draw (q1) edge[bend left below] node{+} (q0);
+    
+    \end{tikzpicture}
+\end{latin}
