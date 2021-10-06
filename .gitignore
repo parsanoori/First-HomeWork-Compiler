@@ -5,3 +5,4 @@
 /commons/.DS_Store
 *.fls
 *.fdb_latexmk
+.vscode
