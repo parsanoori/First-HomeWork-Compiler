@@ -104,17 +104,11 @@ bool is_py_str_valid(istream &i) {
         if (is_three_cot(i))
             return true;
 
-        if (c != '\\') {
-            i.ignore(1);
+        if (c == '\\') {
+            i.ignore(2);
             continue;
         }
         i.ignore(1);
-        if (is_three_cot(i))
-            i.ignore(3);
-        else {
-            i.ignore(1);
-            continue;
-        }
     }
     return false;
 }
